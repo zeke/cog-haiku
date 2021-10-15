@@ -1,3 +1,4 @@
+# Haikus copied from:
 # https://github.com/herval/creative_machines/blob/master/haikuzao/src/main/resources/haiku.txt
 
 def chunks(lst, n):
