@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e # stop execution if a command or pipeline has an error
+set -x # print statements as they're being executed
+
+# Cog isn't published to PyPi yet, so this is a temporary workaround
+# to clone the repo and build the `cog` package so it can be imported in test_predict.py
+# (Requires Python 3.8+)
+if [ ! -d "cog" ] 
+then
+git clone https://github.com/replicate/cog
+cd cog
+pip install -r requirements-dev.txt
+cd python
+python setup.py develop
+cd ../..
+fi
+
+pytest -s test_predict.py
