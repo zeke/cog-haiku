@@ -19,7 +19,7 @@ jobs:
         run:
       
       - name: Install pytest
-      - run: python my_script.py
+        run: python my_script.py
 
       - name: Checkout repo
         uses: actions/checkout@v2
