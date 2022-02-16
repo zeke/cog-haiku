@@ -17,7 +17,9 @@ jobs:
         with:
           python-version: '3.8.12'
         run:
-          pip install pytest
+      
+      - name: Install pytest
+      - run: python my_script.py
 
       - name: Checkout repo
         uses: actions/checkout@v2
