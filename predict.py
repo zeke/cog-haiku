@@ -1,14 +1,14 @@
-import cog
+from cog import BasePredictor, Input
 import haiku
 import random
 
-class Predictor(cog.Predictor):
+class Predictor(BasePredictor):
     def setup(self):
       self.haikus = haiku.load_all()
 
-    @cog.input("seed", type=int, help="An optional random seed", min=0, max=1000, default=None)
-    def predict(self, seed):
+    def predict(self, 
+      seed: int = Input(description="An optional random seed", ge=0, default=None)) -> str:
       if seed:
-        return self.haikus[seed]
+        return self.haikus[seed % len(self.haikus)]
       else:
         return random.choice(self.haikus)
