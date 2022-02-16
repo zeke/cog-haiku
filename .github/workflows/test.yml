@@ -23,12 +23,5 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      # - name: Checkout Cog repo
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: replicate/cog
-      #     # ref: 'future'
-      #     path: cog
-
       - name: Run tests
         run: script/test
