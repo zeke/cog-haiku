@@ -6,6 +6,11 @@ on:
 
 jobs:
   test:
+    name: Python tests
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
