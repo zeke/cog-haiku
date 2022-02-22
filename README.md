@@ -1,6 +1,6 @@
-# Cog Kitchen Sink
+# Cog Haiku
 
-This repo is for testing out [Cog](https://github.com/replicate/cog) containers for machine learning.
+A project that generates haiku for testing out [Cog](https://github.com/replicate/cog) containers for machine learning.
 
 ## Tests
 
