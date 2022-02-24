@@ -1,4 +1,6 @@
-from predict import StandardPredictor, ProgressivePredictor
+import subprocess
+import os
+from predict import StandardPredictor, ProgressivePredictor, ImagePredictor
 
 
 class TestStandardPredictor:
@@ -40,3 +42,15 @@ class TestProgressivePredictor:
     assert(len(output2) > 5)
     
     assert output1 != output2
+
+class TestImagePredictor:
+  def test_seed_always_returns_same_haiku(self):
+    p = ImagePredictor()
+    p.setup()
+    output_file = p.predict()
+  
+    if not os.environ.get('CI'):
+      print(output_file)
+      subprocess.run(['open', output_file], check=True)
+
+    assert os.path.exists(output_file)

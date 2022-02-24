@@ -1,11 +1,16 @@
 build:
   gpu: false
   python_version: "3.8"
+  python_packages:
+    - Pillow==9.0.1
 
-# Comment out one or the other when doing cog push:
+# uncomment one of these before `cog push`:
 
 # cog push r8.im/zeke/haiku-standard
-predict: "predict.py:StandardPredictor"
+# predict: "predict.py:StandardPredictor"
 
 # cog push r8.im/zeke/haiku-progressive
 # predict: "predict.py:ProgressivePredictor"
+
+# cog push r8.im/zeke/haiku-image
+predict: "predict.py:ImagePredictor"
