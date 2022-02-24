@@ -6,11 +6,11 @@ build:
 
 # uncomment one of these before `cog push`:
 
-# cog push r8.im/zeke/haiku-standard
+# image: r8.im/zeke/haiku-standard
 # predict: "predict.py:StandardPredictor"
 
-# cog push r8.im/zeke/haiku-progressive
+# image: r8.im/zeke/haiku-progressive
 # predict: "predict.py:ProgressivePredictor"
 
-# cog push r8.im/zeke/haiku-image
+image: r8.im/zeke/haiku-image
 predict: "predict.py:ImagePredictor"
