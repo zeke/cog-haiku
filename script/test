@@ -18,6 +18,6 @@ cd ../..
 fi
 
 # manually install python packages
-pip install pillow
+pip install pillow colorthief numpy
 
 pytest -s test_predict.py

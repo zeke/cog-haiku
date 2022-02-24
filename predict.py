@@ -4,6 +4,7 @@ import time
 from pathlib import Path
 from typing import Generator
 
+from colorthief import ColorThief
 from PIL import Image, ImageDraw, ImageFont
 
 import haiku
@@ -56,17 +57,26 @@ class ImagePredictor(HaikuBasePredictor):
     Return haiku as an image.
     """
     def predict(self, 
-      seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None)
+      seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None),
+      source_image: int = Input(description="An image from which to derive a background color for the output image (optional)", ge=0, default=None),
       ) -> CogPath:
         haiku = self.get_haiku(seed)
-        image_path = self.generate_image(haiku)
+
+        # extract dominant color from source image for use in output image
+        if source_image and type(source_image) == str:
+          color = ColorThief(source_image).get_color(quality=1)
+        else:
+          color = None
+
+        image_path = self.generate_image(haiku, color=color)
         return image_path
 
-    def generate_image(self, text): 
-      img = Image.new('RGB', (512, 512), color = (73, 109, 137))
+    def generate_image(self, text, color = (0, 0, 0)): 
+      img = Image.new('RGB', (512, 512), color=color)
       draw = ImageDraw.Draw(img)
       font = ImageFont.load_default()
       draw.text((10,10), text, font=font, fill=(255,255,0))
       output_path = Path(tempfile.mkdtemp()) / "haiku.png"
       img.save(output_path)
+
       return output_path
