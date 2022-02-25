@@ -58,7 +58,7 @@ class ImagePredictor(HaikuBasePredictor):
     """
     def predict(self, 
       seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None),
-      source_image: int = Input(description="An image from which to derive a background color for the output image (optional)", ge=0, default=None),
+      source_image: CogPath = Input(description="An image from which to derive a background color for the output image (optional)", ge=0, default=None),
       ) -> CogPath:
         haiku = self.get_haiku(seed)
 
