@@ -1,16 +1,13 @@
 import random
 import tempfile
 import time
-from pathlib import Path
 from typing import Generator
 
 from colorthief import ColorThief
 from PIL import Image, ImageDraw, ImageFont
 
 import haiku
-from cog import BasePredictor, Input
-from cog import Path as CogPath
-
+from cog import BasePredictor, Input, Path
 
 class HaikuBasePredictor(BasePredictor):
     """
@@ -58,8 +55,8 @@ class ImagePredictor(HaikuBasePredictor):
     """
     def predict(self, 
       seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None),
-      source_image: CogPath = Input(description="An image from which to derive a background color for the output image (optional)", default=None),
-      ) -> CogPath:
+      source_image: Path = Input(description="An image from which to derive a background color for the output image (optional)", default=None),
+      ) -> Path:
         haiku = self.get_haiku(seed)
 
         # extract dominant color from source image for use in output image
