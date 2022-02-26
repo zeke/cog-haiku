@@ -9,7 +9,6 @@ if [ ! -d "cog" ]
 then
 git clone https://github.com/replicate/cog
 cd cog
-# use the new unreleased version of cog
 git switch future
 pip install -r requirements-dev.txt
 cd python
@@ -18,6 +17,6 @@ cd ../..
 fi
 
 # manually install python packages
-pip install pillow colorthief numpy
+pip install pillow colorthief numpy fastapi
 
-pytest -s test_predict.py
+pytest -s test_*.py
