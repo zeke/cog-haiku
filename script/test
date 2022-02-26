@@ -17,6 +17,6 @@ cd ../..
 fi
 
 # manually install python packages
-pip install pillow colorthief numpy
+pip install pillow colorthief numpy fastapi
 
-pytest -s test_predict.py
+pytest -s test_*.py
