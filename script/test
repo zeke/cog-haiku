@@ -9,7 +9,6 @@ if [ ! -d "cog" ]
 then
 git clone https://github.com/replicate/cog
 cd cog
-# use the new unreleased version of cog
 git switch future
 pip install -r requirements-dev.txt
 cd python
