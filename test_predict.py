@@ -62,9 +62,9 @@ class TestImagePredictor:
     p.setup()
     output_file = p.predict()
   
-    if not os.environ.get('CI'):
-      print(output_file)
-      subprocess.run(['open', output_file], check=True)
+    # if not os.environ.get('CI'):
+    #   print(output_file)
+    #   subprocess.run(['open', output_file], check=True)
 
     assert os.path.exists(output_file)
 
@@ -78,9 +78,9 @@ class TestImagePredictor:
       source_image = "./fixtures/leaves.png"
       output_file = p.predict(source_image=source_image)
     
-      if not os.environ.get('CI'):
-        print(output_file)
-        subprocess.run(['open', output_file], check=True)
+      # if not os.environ.get('CI'):
+      #   print(output_file)
+      #   subprocess.run(['open', output_file], check=True)
 
       assert os.path.exists(output_file)
 
