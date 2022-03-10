@@ -48,10 +48,10 @@ class TestProgressivePredictor:
     p = ProgressivePredictor()
     p.setup()
     output1 = [result for result in p.predict(sleep=0.01)]
-    assert(len(output1) > 4)
+    assert(len(output1) > 2)
 
     output2 = [result for result in p.predict(sleep=0.01)]
-    assert(len(output2) > 4)
+    assert(len(output2) > 2)
     
     assert output1 != output2
 
