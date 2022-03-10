@@ -22,6 +22,16 @@ class HaikuBasePredictor(BasePredictor):
       
       return random.choice(self.haikus)
 
+    def generate_image(self, text, color = (0, 0, 0)): 
+      img = Image.new('RGB', (512, 512), color=color)
+      draw = ImageDraw.Draw(img)
+      font = ImageFont.load_default()
+      draw.text((10,10), text, font=font, fill=(255,255,0))
+      output_path = Path(tempfile.mkdtemp()) / "haiku.png"
+      img.save(output_path)
+
+      return output_path
+
 
 class StandardPredictor(HaikuBasePredictor):
     """
@@ -68,13 +78,3 @@ class ImagePredictor(HaikuBasePredictor):
 
         image_path = self.generate_image(haiku, color=color)
         return image_path
-
-    def generate_image(self, text, color = (0, 0, 0)): 
-      img = Image.new('RGB', (512, 512), color=color)
-      draw = ImageDraw.Draw(img)
-      font = ImageFont.load_default()
-      draw.text((10,10), text, font=font, fill=(255,255,0))
-      output_path = Path(tempfile.mkdtemp()) / "haiku.png"
-      img.save(output_path)
-
-      return output_path
