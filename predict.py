@@ -1,7 +1,7 @@
 import random
 import tempfile
 import time
-from typing import Generator
+from typing import Iterator
 
 from colorthief import ColorThief
 from PIL import Image, ImageDraw, ImageFont
@@ -40,12 +40,13 @@ class ProgressivePredictor(HaikuBasePredictor):
     def predict(self, 
       seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None),
       sleep: float = Input(description="Time to sleep between each word (when using progressive output)", default=0.1),
-      ) -> Generator[str, None, None]:
+      ) -> Iterator[str]:
 
         haiku = self.get_haiku(seed)
-
-        for word in haiku.split():
-          yield word
+        words = haiku.split(" ")
+        for i,_word in enumerate(words):
+          haiku_so_far = " ".join(words[0:i+1])
+          yield haiku_so_far
           time.sleep(sleep)
 
 

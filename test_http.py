@@ -49,7 +49,10 @@ class TestProgressivePredictor:
       client = make_client(ProgressivePredictor())
       resp = client.post("/predictions", json={"input": {"seed": 123}})
       assert resp.status_code == 200
-      assert resp.json() == {"status": "success", "output": "road"} # last word
+      assert resp.json()["status"] == "success"
+      assert resp.json()["output"][0] == "from"
+      assert resp.json()["output"][1] == "from somewhere\npear"
+      assert resp.json()["output"][-1] == "from somewhere\npear blossoms\n\na curve in the road"
 
 class TestImagePredictor:
   def test_returns_an_image(self):
