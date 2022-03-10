@@ -2,7 +2,7 @@ from cog.server.http import create_app
 from fastapi.testclient import TestClient
 
 from cog import BasePredictor
-from predict import ImagePredictor, ProgressivePredictor, StandardPredictor
+from predict import ImagePredictor, ProgressiveImagePredictor, ProgressivePredictor, StandardPredictor
 
 
 def make_client(predictor: BasePredictor, **kwargs) -> TestClient:
@@ -61,3 +61,18 @@ class TestImagePredictor:
       assert resp.status_code == 200
       header, b64data = resp.json()["output"].split(",", 1)
       assert header == "data:image/png;base64"
+
+
+class TestProgressiveImagePredictor:
+  def test_returns_last_yielded_output(self):
+      client = make_client(ProgressiveImagePredictor())
+      resp = client.post("/predictions", json={"input": {"seed": 123}})
+      assert resp.status_code == 200
+      output = resp.json()["output"]
+
+      assert type(output) == list
+      assert len(output) > 1
+      for i, img in enumerate(output):
+          header, b64data = img.split(",", 1)
+          assert header == "data:image/png;base64"
+          assert len(b64data) > 0
