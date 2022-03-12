@@ -52,6 +52,9 @@ class TestProgressivePredictor:
       assert resp.json()["status"] == "success"
       assert resp.json()["output"][0] == "from"
       assert resp.json()["output"][1] == "from an"
+      assert resp.json()["output"][2] == "from an open"
+      assert resp.json()["output"][3] == "from an open barn\n"
+      assert resp.json()["output"][4] == "from an open barn\nthe"
       assert resp.json()["output"][-1] == "from an open barn\nthe odor of hay and manure\nand climbing roses"
 
 class TestImagePredictor:

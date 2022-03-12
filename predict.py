@@ -9,6 +9,9 @@ from PIL import Image, ImageDraw, ImageFont
 import haiku
 from cog import BasePredictor, Input, Path
 
+def haiku_to_words(haiku):
+  return haiku.replace("\n", "\n ").split(" ")
+
 class HaikuBasePredictor(BasePredictor):
     """
     Base predictor from which Standard and Progressive predictors inherit
@@ -60,9 +63,9 @@ class ProgressivePredictor(HaikuBasePredictor):
       ) -> Iterator[str]:
 
         haiku = self.get_haiku(seed)
-        words = haiku.split(" ")
+        words = haiku_to_words(haiku)
         for i,_word in enumerate(words):
-          haiku_so_far = " ".join(words[0:i+1])
+          haiku_so_far = " ".join(words[0:i+1]).replace("\n ", "\n")
           yield haiku_so_far
           time.sleep(sleep)
 
@@ -105,9 +108,9 @@ class ProgressiveImagePredictor(HaikuBasePredictor):
         else:
           bg_color = None
 
-        words = haiku.split(" ")
+        words = haiku_to_words(haiku)
         for i,_word in enumerate(words):
-          haiku_so_far = " ".join(words[0:i+1])
+          haiku_so_far = " ".join(words[0:i+1]).replace("\n ", "\n")
           image_path = self.generate_image(haiku_so_far, bg_color=bg_color)
           yield Path(image_path)
           time.sleep(sleep)
