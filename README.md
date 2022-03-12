@@ -2,7 +2,7 @@
 
 A project that generates haiku for testing out [Cog](https://github.com/replicate/cog) containers for machine learning.
 
-This model is using the [pydantic version of Cog](https://github.com/replicate/cog/releases/tag/v0.1.0-alpha).
+This model is using the [pydantic version of Cog](https://github.com/replicate/cog/releases/tag/v0.1.0).
 
 ## Predictors
 
