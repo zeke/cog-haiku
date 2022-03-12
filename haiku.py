@@ -7,14 +7,17 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 def load_all():
-  with open('haiku.txt') as f:
-    lines = f.readlines()
-    haikus = [ ]
-    for chunk in list(chunks(lines, 4)):
-      haiku = "".join(chunk).strip()
-      haikus.append(haiku)
+  with open('haiku.txt') as file:
 
-    while("" in haikus) :
-      haikus.remove("")
+    haikus = []
+
+    for stanza in file.read().split("\n\n"):
+      
+      # trim whitespace
+      stanza = stanza.strip()
+
+      # collect all three-line stanzas
+      if stanza.count("\n") == 2:
+        haikus.append(stanza)
 
     return haikus

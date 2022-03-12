@@ -18,7 +18,6 @@ fi
 # manually install python packages
 pip install pillow colorthief numpy fastapi
 
-# pytest -s test_*.py
-
-pytest -s test_http.py
-pytest -s test_predict.py
+pytest -v -s test_haiku.py
+pytest -v -s test_predict.py
+pytest -v -s test_http.py 

@@ -21,10 +21,10 @@ class TestStandardPredictor:
     p = StandardPredictor()
     p.setup()
     output = p.predict(seed=123)
-    assert "pear blossoms" in output
+    assert output == "from an open barn\nthe odor of hay and manure\nand climbing roses"
 
     output = p.predict(seed=123)
-    assert "pear blossoms" in output
+    assert output == "from an open barn\nthe odor of hay and manure\nand climbing roses"
 
   def test_without_seed_returns_random_haiku(self):
     p = StandardPredictor()
@@ -42,7 +42,7 @@ class TestProgressivePredictor:
     p = ProgressivePredictor()
     p.setup()
     output = [result for result in p.predict(seed=123, sleep=0.1)]
-    assert(output[-1] == 'from somewhere\npear blossoms\n\na curve in the road')
+    assert(output[-1] == "from an open barn\nthe odor of hay and manure\nand climbing roses")
 
   def test_without_seed_returns_random_haiku(self):
     p = ProgressivePredictor()
