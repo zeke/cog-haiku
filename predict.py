@@ -22,11 +22,18 @@ class HaikuBasePredictor(BasePredictor):
       
       return random.choice(self.haikus)
 
-    def generate_image(self, text, color = (0, 0, 0)): 
-      img = Image.new('RGB', (512, 512), color=color)
+    def generate_image(self, text, text_color=None, bg_color = None) -> Path:
+
+      if not bg_color:
+        bg_color = 'papayawhip'
+
+      if not text_color:
+        text_color = 'indianred'
+
+      img = Image.new('RGB', (512, 512), color=bg_color)
       draw = ImageDraw.Draw(img)
-      font = ImageFont.load_default()
-      draw.text((10,10), text, font=font, fill=(255,255,0))
+      font = ImageFont.truetype("fonts/CedarvilleCursive-Regular.ttf", 32)
+      draw.text((40,175), text, font=font, fill=text_color)
       output_path = Path(tempfile.mkdtemp()) / "haiku.png"
       img.save(output_path)
 
@@ -72,11 +79,11 @@ class ImagePredictor(HaikuBasePredictor):
 
         # extract dominant color from source image for use in output image
         if source_image and type(source_image) == str:
-          color = ColorThief(source_image).get_color(quality=1)
+          bg_color = ColorThief(source_image).get_color(quality=1)
         else:
-          color = None
+          bg_color = None
 
-        image_path = self.generate_image(haiku, color=color)
+        image_path = self.generate_image(haiku, bg_color=bg_color)
         return image_path
 
 
@@ -94,13 +101,13 @@ class ProgressiveImagePredictor(HaikuBasePredictor):
 
         # extract dominant color from source image for use in output image
         if source_image and type(source_image) == str:
-          color = ColorThief(source_image).get_color(quality=1)
+          bg_color = ColorThief(source_image).get_color(quality=1)
         else:
-          color = None
+          bg_color = None
 
         words = haiku.split(" ")
         for i,_word in enumerate(words):
           haiku_so_far = " ".join(words[0:i+1])
-          image_path = self.generate_image(haiku_so_far, color=color)
+          image_path = self.generate_image(haiku_so_far, bg_color=bg_color)
           yield Path(image_path)
           time.sleep(sleep)

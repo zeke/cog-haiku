@@ -61,15 +61,15 @@ class TestImagePredictor:
     p.setup()
     output_file = p.predict()
   
-    # if not os.environ.get('CI'):
-    #   print(output_file)
-    #   subprocess.run(['open', output_file], check=True)
+    if not os.environ.get('CI'):
+      # print(output_file)
+      subprocess.run(['open', output_file], check=True)
 
     assert os.path.exists(output_file)
 
-    # background should be black because no source image was provided
+    # background should be the default color because no source image was provided
     unique_colors = get_unique_colors(output_file)
-    assert [0, 0, 0] in unique_colors
+    assert [255,239,213] in unique_colors
 
   def test_gets_background_color_from_source_image(self):
       p = ImagePredictor()
