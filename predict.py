@@ -33,10 +33,12 @@ class HaikuBasePredictor(BasePredictor):
       if not text_color:
         text_color = 'indianred'
 
-      img = Image.new('RGB', (512, 512), color=bg_color)
+      width = 512
+      height = 200
+      img = Image.new('RGB', (width, height), color=bg_color)
       draw = ImageDraw.Draw(img)
       font = ImageFont.truetype("fonts/CedarvilleCursive-Regular.ttf", 32)
-      draw.text((40,175), text, font=font, fill=text_color)
+      draw.text((30,25), text, font=font, fill=text_color)
       output_path = Path(tempfile.mkdtemp()) / "haiku.png"
       img.save(output_path)
 
