@@ -28,7 +28,7 @@ class TestStandardPredictor:
       client = make_client(StandardPredictor())
       resp = client.post("/predictions", json={"input": {"seed": 123}})
       assert resp.status_code == 200
-      assert resp.json() == {"status": "success", "output": "from somewhere\npear blossoms\n\na curve in the road"}
+      assert resp.json() == {"status": "success", "output": "from an open barn\nthe odor of hay and manure\nand climbing roses"}
 
   def test_without_seed(self):
       client = make_client(StandardPredictor())
@@ -51,8 +51,8 @@ class TestProgressivePredictor:
       assert resp.status_code == 200
       assert resp.json()["status"] == "success"
       assert resp.json()["output"][0] == "from"
-      assert resp.json()["output"][1] == "from somewhere\npear"
-      assert resp.json()["output"][-1] == "from somewhere\npear blossoms\n\na curve in the road"
+      assert resp.json()["output"][1] == "from an"
+      assert resp.json()["output"][-1] == "from an open barn\nthe odor of hay and manure\nand climbing roses"
 
 class TestImagePredictor:
   def test_returns_an_image(self):
