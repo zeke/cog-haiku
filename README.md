@@ -18,6 +18,16 @@ This repo contains several Cog predictors, each of which is published as a model
 script/test
 ```
 
+## Server
+
+```sh
+script/server
+```
+
+- http://localhost:5000
+- http://localhost:5000/docs
+- http://localhost:5000/openapi.json
+
 ## Release
 
 To push a model to Replicate:
