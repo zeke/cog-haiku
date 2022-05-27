@@ -5,6 +5,7 @@ build:
     - Pillow==9.0.1
     - colorthief==0.2.1
     - numpy==1.22.2
+
 # uncomment one of these before `cog push`:
 
 # image: r8.im/zeke/haiku-standard
@@ -16,5 +17,8 @@ build:
 # image: r8.im/zeke/haiku-image
 # predict: "predict.py:ImagePredictor"
 
-image: r8.im/zeke/haiku-progressive-image
-predict: "predict.py:ProgressiveImagePredictor"
+# image: r8.im/zeke/haiku-progressive-image
+# predict: "predict.py:ProgressiveImagePredictor"
+
+image: r8.im/zeke/haiku-multi-output
+predict: "predict.py:MultiOutputPredictor"
