@@ -132,6 +132,10 @@ class MultiOutputPredictor(HaikuBasePredictor):
       seed: int = Input(description="A seed to always return the same result (optional)", ge=0, default=None),
       source_image: Path = Input(description="An image from which to derive a background color for the output image (optional)", default=None),
       ) -> Output:
+        # this predictor returns `seed`` as part of its output, so it cannot be None
+        if not seed:
+          seed = random.randrange(0, len(self.haikus))
+
         haiku = self.get_haiku(seed)
 
         # extract dominant color from source image for use in output image
