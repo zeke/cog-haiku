@@ -8,8 +8,8 @@ build:
 
 # uncomment one of these before `cog push`:
 
-# image: r8.im/zeke/haiku-standard
-# predict: "predict.py:StandardPredictor"
+image: r8.im/zeke/haiku-standard
+predict: "predict.py:StandardPredictor"
 
 # image: r8.im/zeke/haiku-progressive
 # predict: "predict.py:ProgressivePredictor"
@@ -20,5 +20,5 @@ build:
 # image: r8.im/zeke/haiku-progressive-image
 # predict: "predict.py:ProgressiveImagePredictor"
 
-image: r8.im/zeke/haiku-multi-output
-predict: "predict.py:MultiOutputPredictor"
+# image: r8.im/zeke/haiku-multi-output
+# predict: "predict.py:MultiOutputPredictor"
