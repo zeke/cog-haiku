@@ -3,7 +3,7 @@ set -e # stop execution if a command or pipeline has an error
 set -x # print statements as they're being executed
 
 # manually install python packages
-pip install cog pillow colorthief numpy fastapi
+pip install cog pillow colorthief numpy fastapi httpx
 
 pytest -v -s test_haiku.py
 pytest -v -s test_predict.py
